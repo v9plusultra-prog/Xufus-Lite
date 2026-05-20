@@ -2,9 +2,10 @@
 
 Production-oriented Windows bootable USB utility (original implementation) built with .NET 8 + WPF.
 
-## Download
-- Latest release: `https://github.com/<your-org-or-user>/Xufus-Lite/releases/latest`
-- Detailed instructions: [docs/DOWNLOAD.md](docs/DOWNLOAD.md)
+## Download (.exe)
+- Latest release page: `https://github.com/<your-org-or-user>/Xufus-Lite/releases/latest`
+- Download `XufusLite-win-x64.zip`, extract it, then run `XufusLite.App.exe`.
+- Direct instructions: [docs/DOWNLOAD.md](docs/DOWNLOAD.md)
 
 ## Build (Windows)
 1. Install .NET 8 SDK.
