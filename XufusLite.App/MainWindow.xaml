@@ -1,0 +1,31 @@
+<Window x:Class="XufusLite.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Xufus Lite" Height="760" Width="1180" WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource AppBackgroundBrush}">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="280"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Border CornerRadius="20" Background="#22FFFFFF" Padding="16" Margin="0,0,16,0">
+            <StackPanel>
+                <TextBlock Text="Xufus Lite" FontSize="28" FontWeight="Bold"/>
+                <TextBlock Text="Bootable USB Utility" Opacity="0.8" Margin="0,0,0,24"/>
+                <Button Content="Select ISO" Height="42" Margin="0,8"/>
+                <Button Content="Refresh Drives" Height="42" Margin="0,8"/>
+                <Button Content="Start" Height="42" Margin="0,8" Background="#FF0E639C" Foreground="White"/>
+                <ProgressBar Height="10" Margin="0,24,0,0" Value="64"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="200"/></Grid.RowDefinitions>
+            <Border Background="#33FFFFFF" CornerRadius="20" Padding="16">
+                <TextBlock Text="ISO Information • Windows/Linux detection • UEFI/BIOS compatibility"/>
+            </Border>
+            <Border Grid.Row="1" Margin="0,16,0,16" Background="#33FFFFFF" CornerRadius="20" Padding="16">
+                <TextBlock Text="Drive cards and partition/file system selection panel."/>
+            </Border>
+            <Border Grid.Row="2" Background="#66000000" CornerRadius="20" Padding="12">
+                <TextBox Text="Live structured operation logs..." IsReadOnly="True" Background="Transparent" BorderThickness="0" Foreground="#DDFFFFFF"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
