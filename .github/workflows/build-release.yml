@@ -1,0 +1,51 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore XufusLite.sln
+
+      - name: Build
+        run: dotnet build XufusLite.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test XufusLite.Tests/XufusLite.Tests.csproj -c Release --no-build
+
+      - name: Publish app
+        run: dotnet publish XufusLite.App/XufusLite.App.csproj -c Release -r win-x64 --self-contained true -o publish
+
+      - name: Package zip
+        run: Compress-Archive -Path publish\* -DestinationPath XufusLite-win-x64.zip
+        shell: pwsh
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XufusLite-win-x64
+          path: XufusLite-win-x64.zip
+
+      - name: Create GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: XufusLite-win-x64.zip
+          generate_release_notes: true
